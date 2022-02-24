@@ -45,11 +45,12 @@
         android:layout_marginRight="10dp"
         android:gravity="center"
         >
+        <!-- tool:bla_bla => displays only on design not in the final build -->
         <ImageView
             android:id="@+id/iconImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/icon_02n"
+            tools:src="@drawable/icon_02n"
             android:scaleType="centerCrop"
             ></ImageView>
         <LinearLayout
