@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:padding="15dp">
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="95"
+            android:paddingLeft="10dp"
+            android:hint="@string/search_editText_hint"
+            android:background="@drawable/edirtext_border">
+
+        </EditText>
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="5"
+            android:text="@string/search_btn_text"
+            android:background="@drawable/btn_background"
+            >
+
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/icon_02n"
+            android:scaleType="centerCrop"
+            ></ImageView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/mainTemperator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="40 C°"
+                android:textStyle="bold"
+                android:textSize="40dp"></TextView>
+            <TextView
+                android:id="@+id/mainLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="Boujdour, Morocco"></TextView>
+            <TextView
+                android:id="@+id/mainDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="March 16"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/weekWeatherListView"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </ListView>
+
+</LinearLayout>
