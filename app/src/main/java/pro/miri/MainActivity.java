@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                 JsonArray weather = result.get("weather").getAsJsonArray();
                                 JsonObject weatherObj = weather.get(0).getAsJsonObject();
                                 String description = weatherObj.get("description").getAsString();
+                                String icon = weatherObj.get("icon").getAsString();
 
 
 
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                                 mainTemperator.setText(String.valueOf(Math.round((temp-273.15))+ " °C"));
                                 mainLocation.setText(cityName+", "+country);
                                 mainDate.setText(description);
+
+                                loadIconToImageView(icon);
                             }
                             catch (Exception ex){
                                 ex.printStackTrace();
@@ -106,5 +109,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private void loadIconToImageView(String iconName){
+        // other Ion alternatives : GLIDE, PECASSO
+        String ICON_URL = "http://openweathermap.org/img/wn/{iconName}@2x.png";
+        Ion.with(this).load(ICON_URL.replace("{iconName}", iconName)).intoImageView(iconImageView);
+
     }
 }

@@ -34,7 +34,7 @@
 
         </Button>
     </LinearLayout>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,13 +46,14 @@
         android:gravity="center"
         >
 
-        <!-- tool:bla_bla => displays only on design not in the final build -->
+        <!-- tools:bla_bla => displays only on design not in the final build -->
         <ImageView
             android:id="@+id/iconImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
             tools:src="@drawable/icon_02n"
             android:scaleType="centerCrop"
+            android:layout_gravity="center"
             ></ImageView>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,7 +65,7 @@
                 android:id="@+id/mainTemperator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="40 C°"
+                tools:text="40 C°"
                 android:textStyle="bold"
                 android:textSize="56dp"></TextView>
             <TextView
@@ -72,13 +73,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
-                android:text="Boujdour, Morocco"></TextView>
+                tools:text="Boujdour, Morocco"></TextView>
             <TextView
                 android:id="@+id/mainDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
-                android:text="March 16"></TextView>
+                tools:text="March 16"></TextView>
         </LinearLayout>
     </LinearLayout>
     <ListView
