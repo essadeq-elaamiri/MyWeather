@@ -17,6 +17,8 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
 public class MainActivity extends AppCompatActivity {
+    final String API_KEY = "3a213010f97dde28c42f410369f59136";
+
     Button searchBtn;
     EditText searchEditText;
     ImageView iconImageView;
@@ -63,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadWeatherDataByCity(String location) {
         String API_URL = "http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_key}";
-        String API_KEY = "3a213010f97dde28c42f410369f59136";
         Ion.with(this)
                 .load(API_URL.replace("{city_name}", location).replace("{API_key}", API_KEY))
                 .asJsonObject()
