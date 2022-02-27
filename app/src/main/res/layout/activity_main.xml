@@ -34,7 +34,7 @@
 
         </Button>
     </LinearLayout>
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +45,7 @@
         android:layout_marginRight="10dp"
         android:gravity="center"
         >
+
         <!-- tool:bla_bla => displays only on design not in the final build -->
         <ImageView
             android:id="@+id/iconImageView"
@@ -65,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:text="40 C°"
                 android:textStyle="bold"
-                android:textSize="40dp"></TextView>
+                android:textSize="56dp"></TextView>
             <TextView
                 android:id="@+id/mainLocation"
                 android:layout_width="wrap_content"

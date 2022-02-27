@@ -1,5 +1,6 @@
 package pro.miri;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -72,8 +74,36 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         // do stuff with the result or error
-                        Log.d("Result: ", result.toString());
+                        //Log.d("Result: ", result.toString());
+                        if(e != null){
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, "Error during retrieve data, please try again!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            try {
+                                //convert json response to java
+                                JsonObject main = result.get("main").getAsJsonObject();
+                                double temp = main.get("temp").getAsDouble();
+                                JsonObject sys = result.get("sys").getAsJsonObject();
+                                String country = sys.get("country").getAsString();
+                                String cityName = result.get("name").getAsString();
+                                JsonArray weather = result.get("weather").getAsJsonArray();
+                                JsonObject weatherObj = weather.get(0).getAsJsonObject();
+                                String description = weatherObj.get("description").getAsString();
 
+
+
+                                // set to view
+                                mainTemperator.setText(String.valueOf(Math.round((temp-273.15))+ " °C"));
+                                mainLocation.setText(cityName+", "+country);
+                                mainDate.setText(description);
+                            }
+                            catch (Exception ex){
+                                ex.printStackTrace();
+                                Toast.makeText(MainActivity.this, "Error: city not found.", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
                     }
                 });
     }
