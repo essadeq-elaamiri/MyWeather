@@ -1,6 +1,8 @@
 package pro.miri;
 
 import android.content.Context;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,10 @@ import androidx.annotation.Nullable;
 import com.koushikdutta.ion.Ion;
 
 import java.sql.Date;
+
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import pro.miri.models.WeatherInfo;
 
@@ -40,12 +45,22 @@ public class DailyForecastAdapter extends ArrayAdapter<WeatherInfo> {
         ImageView icon = convertView.findViewById(R.id.dailyForecastIcon);
 
         WeatherInfo current = this.weatherInfoList.get(position);
-        Date formattedDate = new Date(current.getDate());
-        date.setText(formattedDate.toString());
+
+        Date dateFormatted = new Date(current.getDate()*1000);
+        /*
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM yy", Locale.ENGLISH);
+        dateFormat.setTimeZone(TimeZone.getTimeZone(current.getTimeZone()));
+
+         */
+        date.setText(dateFormatted.toString());
+
         temp.setText(String.valueOf(current.getTemperature()).concat(" °C"));
         loadIconToImageView(icon, current.getIcon());
 
-        return super.getView(position, convertView, parent);
+        //String ICON_URL = "http://openweathermap.org/img/wn/{iconName}@2x.png";
+        //Ion.with(getContext()).load(ICON_URL.replace("{iconName}", current.getIcon())).intoImageView(icon);
+
+        return convertView;
 
     }
 

@@ -1,6 +1,5 @@
 package pro.miri;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import pro.miri.models.WeatherInfo;
@@ -145,7 +145,21 @@ public class MainActivity extends AppCompatActivity {
                                 // retrieve data and add it to listView
                                 //Log.d("Res: ", result.toString());
                                 // Load data to the ListView
-                                List<WeatherInfo> 
+                                List<WeatherInfo> weatherInfoList = new ArrayList<>();
+                                String timeZone = result.get("timezone").getAsString();
+                                JsonArray dailyWeatherInfo = result.get("daily").getAsJsonArray();
+
+                                for (int i=1; i< dailyWeatherInfo.size(); i++){
+                                    JsonObject weatherInfoItem = dailyWeatherInfo.get(i).getAsJsonObject();
+                                    long dt = weatherInfoItem.get("dt").getAsLong();
+                                    double temp = (weatherInfoItem.get("temp").getAsJsonObject()).get("day").getAsDouble();
+                                    String icon = ((weatherInfoItem.get("weather").getAsJsonArray()).get(0).getAsJsonObject()).get("icon").getAsString();
+                                    weatherInfoList.add(new WeatherInfo(dt, timeZone, temp, icon));
+                                }
+                                // attach adapter to listview
+                                DailyForecastAdapter adapter = new DailyForecastAdapter(MainActivity.this, weatherInfoList);
+                                weekWeatherListView.setAdapter(adapter);
+
                             }
                             catch (Exception ex){
                                 ex.printStackTrace();

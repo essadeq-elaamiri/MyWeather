@@ -2,11 +2,21 @@ package pro.miri.models;
 
 public class WeatherInfo {
     private Long date;
+    private String timeZone;
     private double temperature;
     private String icon;
 
-    public WeatherInfo(Long date, double temperature, String icon) {
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    public WeatherInfo(Long date, String timeZone, double temperature, String icon) {
         this.date = date;
+        this.timeZone = timeZone;
         this.temperature = temperature;
         this.icon = icon;
     }
