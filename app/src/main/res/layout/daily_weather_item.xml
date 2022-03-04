@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:gravity="center"
+    android:layout_centerVertical="true"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/dailyForecastDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sat, 23 Nom"
+        android:textSize="23dp" />
+
+    <TextView
+        android:id="@+id/dailyForecastTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="20.09 °C"
+        android:textSize="23dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/dailyForecastIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="21dp"
+        android:layout_toLeftOf="@+id/dailyForecastTemp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_02n" />
+
+
+
+
+</RelativeLayout>

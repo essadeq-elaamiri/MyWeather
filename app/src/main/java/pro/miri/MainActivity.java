@@ -18,6 +18,10 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import java.util.List;
+
+import pro.miri.models.WeatherInfo;
+
 public class MainActivity extends AppCompatActivity {
     final String API_KEY = "3a213010f97dde28c42f410369f59136";
 
@@ -139,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
                         }else{
                             try {
                                 // retrieve data and add it to listView
-                                Log.d("Res: ", result.toString());
+                                //Log.d("Res: ", result.toString());
+                                // Load data to the ListView
+                                List<WeatherInfo> 
                             }
                             catch (Exception ex){
                                 ex.printStackTrace();
