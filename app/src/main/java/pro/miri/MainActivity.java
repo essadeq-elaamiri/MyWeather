@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadWeatherDataByCity(String location) {
-        String API_URL = "http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={API_key}";
+        String API_URL = "http://api.openweathermap.org/data/2.5/weather?q={city_name}&units=metric&appid={API_key}";
         Ion.with(this)
                 .load(API_URL.replace("{city_name}", location).replace("{API_key}", API_KEY))
                 .asJsonObject()
@@ -91,14 +91,18 @@ public class MainActivity extends AppCompatActivity {
                                 JsonObject weatherObj = weather.get(0).getAsJsonObject();
                                 String description = weatherObj.get("description").getAsString();
                                 String icon = weatherObj.get("icon").getAsString();
-
+                                JsonObject coord = result.get("coord").getAsJsonObject();
+                                double lon = coord.get("lon").getAsDouble();
+                                double lat = coord.get("lat").getAsDouble();
 
 
                                 // set to view
-                                mainTemperator.setText(String.valueOf(Math.round((temp-273.15))+ " °C"));
+                                // F->°C : °C= Math.round((F-273.15))
+                                mainTemperator.setText(String.valueOf(temp + " °C"));
                                 mainLocation.setText(cityName+", "+country);
                                 mainDate.setText(description);
 
+                                loadDailyForecast(lon, lat);
                                 loadIconToImageView(icon);
                             }
                             catch (Exception ex){
@@ -114,6 +118,37 @@ public class MainActivity extends AppCompatActivity {
         // other Ion alternatives : GLIDE, PECASSO
         String ICON_URL = "http://openweathermap.org/img/wn/{iconName}@2x.png";
         Ion.with(this).load(ICON_URL.replace("{iconName}", iconName)).intoImageView(iconImageView);
+
+    }
+    private void loadDailyForecast(double lon, double lat){
+        String URL = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=hourly,minutely,current&units=metric&appid={APP_KEY}";
+        String COMPLETE_URL = URL.replace("{lon}", String.valueOf(lon))
+                .replace("{lat}", String.valueOf(lat))
+                .replace("{APP_KEY}", API_KEY);
+        Log.d("URL", COMPLETE_URL);
+        Ion.with(this)
+                .load(COMPLETE_URL)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (e != null){ //if there is an error
+                            e.printStackTrace();
+                            Toast.makeText(MainActivity.this, "Error during retrieve daily forecast data, please try again!", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            try {
+                                // retrieve data and add it to listView
+                                Log.d("Res: ", result.toString());
+                            }
+                            catch (Exception ex){
+                                ex.printStackTrace();
+                                Toast.makeText(MainActivity.this, "Error city not found", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+
 
     }
 }

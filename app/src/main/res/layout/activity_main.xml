@@ -13,20 +13,21 @@
         android:orientation="horizontal"
         android:weightSum="100"
         android:padding="15dp">
+
         <EditText
             android:id="@+id/searchEditText"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_weight="95"
-            android:paddingLeft="10dp"
+            android:background="@drawable/edirtext_border"
             android:hint="@string/search_editText_hint"
-            android:background="@drawable/edirtext_border">
+            android:paddingLeft="10dp">
 
         </EditText>
         <Button
             android:id="@+id/searchBtn"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_weight="5"
             android:text="@string/search_btn_text"
             android:background="@drawable/btn_background"
@@ -54,6 +55,7 @@
             tools:src="@drawable/icon_02n"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
+            android:layout_marginRight="12dp"
             ></ImageView>
         <LinearLayout
             android:layout_width="wrap_content"
